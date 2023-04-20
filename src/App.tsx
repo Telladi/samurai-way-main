@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header/Header";
 
 const App = () => {
     return (
         <div>
-            <Header />
+            <Header titleValue={"Home"} />
+            <Header titleValue={"News Feed"} />
+            <Header titleValue={"Messages"} />
+
             <Technologies />
         </div>);
 }
@@ -21,15 +25,7 @@ const Technologies = () => {
            </div>
        )
 }
-const Header = () => {
-    return (
-        <div>
-            <a href='#s'>Home</a>
-            <a href='#s'>News Feed</a>
-            <a href='#s'>Messages</a>
-        </div>
-    )
-}
+
 
 export default App;
 
