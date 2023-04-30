@@ -1,14 +1,15 @@
 import React from "react";
+import app, {HeaderLogoType} from "../../App";
 
-
-type HeaderPropsType = {
-    titleValue: string
+export type HeaderPropsType = {
+    logo: HeaderLogoType
 }
 
-export function Header(props: HeaderPropsType){
-    console.log("Header rendering")
+const Header = (props: HeaderPropsType) => {
     return (
-        <a>{props.titleValue}</a>
+        <img src={props.logo.logo}
+             alt="logo"/>
     )
 }
+
 export default Header;
