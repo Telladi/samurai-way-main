@@ -1,5 +1,6 @@
 import React from "react";
-import app from "../../App";
+import classes from "./Navbar.module.css";
+
 
 export type NavbarPropsType = {
     title: string
@@ -7,9 +8,9 @@ export type NavbarPropsType = {
 
 const Navbar = (props: NavbarPropsType) => {
     return (
-        <div>
-            <a href="">{props.title}</a>
-        </div>
+            <div className={classes.item}>
+                <a>{props.title}</a>
+            </div>
     )
 }
 

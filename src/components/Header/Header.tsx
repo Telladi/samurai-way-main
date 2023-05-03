@@ -1,5 +1,6 @@
 import React from "react";
 import app, {HeaderLogoType} from "../../App";
+import classes from "./Header.module.css";
 
 export type HeaderPropsType = {
     logo: HeaderLogoType
@@ -7,8 +8,10 @@ export type HeaderPropsType = {
 
 const Header = (props: HeaderPropsType) => {
     return (
-        <img src={props.logo.logo}
-             alt="logo"/>
+        <header className={classes.header}>
+            <img src={props.logo.logo}
+                 alt="logo"/>
+        </header>
     )
 }
 
