@@ -2,6 +2,7 @@ import React from "react";
 import app from "../../App";
 import classes from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import News from "../News/News";
 
 export type ProfilePropsType = {
     title: string
@@ -12,6 +13,7 @@ const Profile = (props: ProfilePropsType) => {
         <div className={classes.item}>
             <a  href="">{props.title}</a>
             <MyPosts title={"MyPosts"}/>
+
         </div>
     )
 }

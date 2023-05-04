@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Navbar.module.css";
+import News from "../News/News";
 
 
 export type NavbarPropsType = {
@@ -9,7 +10,7 @@ export type NavbarPropsType = {
 const Navbar = (props: NavbarPropsType) => {
     return (
             <div className={classes.item}>
-                <a>{props.title}</a>
+                <a href={props.title}>{props.title}</a>
             </div>
     )
 }
