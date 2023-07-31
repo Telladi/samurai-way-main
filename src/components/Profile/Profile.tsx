@@ -3,6 +3,7 @@ import app from "../../App";
 import classes from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 import News from "../News/News";
+import ProfileInfo from "./PropfileInfo/ProfileInfo";
 
 export type ProfilePropsType = {
     title: string
@@ -10,8 +11,8 @@ export type ProfilePropsType = {
 
 const Profile = (props: ProfilePropsType) => {
     return (
-        <div className={classes.item}>
-            <a  href="">{props.title}</a>
+        <div>
+            <ProfileInfo ava={"ava"}/>
             <MyPosts title={"MyPosts"}/>
 
         </div>
