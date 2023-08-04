@@ -8,10 +8,12 @@ import logo from "./img/logo-header.png"
 import Profile from "./components/Profile/Profile";
 //import logo-main from "./img/img-main.jpg"
 import classes from "./App.module.css";
-import MyPosts from "./components/Profile/MyPosts/MyPosts";
+
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
+import state from './redux/state';
+
 
 
 
@@ -23,40 +25,11 @@ export const headerlogo: HeaderLogoType = {
 }
 
 
-
-export type MessageTypeProps = {
-    message: string
-    id: number
-}
-
-export type DialogsPropsType = {
-    name: string
-    id: number
-}
-
 const App = () => {
 
-
-    let [dialogs, setDialogs] = useState<DialogsPropsType[]>([
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Andrey'},
-        {id: 3, name: 'Sasha'},
-        {id: 4, name: 'Igor'},
-        {id: 5, name: 'Sveta'},
-        {id: 6, name: 'Viktor'},
-    ])
-
-    let [messages, setMessages] = useState<MessageTypeProps[]>([
-        {id: 1, message: "hi"},
-        {id: 2, message: "hi"},
-        {id: 3, message: "hi"},
-        {id: 4, message: "hi"},
-        {id: 5, message: "hi"},
-    ])
-
-
-    const SomeComponent = () => <Dialogs dialogs={dialogs} messages={messages}/>
-
+let messagesData = state.dialogsPage.messages
+let dialogsData = state.dialogsPage.dialogs
+let postsData = state.profilePage.posts
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -69,12 +42,11 @@ const App = () => {
                     </nav>
                 </div>
                 <div className={classes.content}>
-                    <Route path='/dialogs' component={SomeComponent}/>
-                    <Route path='/profile' component={Profile}/>
+                    {/*<Route path='/dialogs' component={SomeComponent}/>*/}
+                    <Route path='/profile' render={()=> <Profile posts={postsData} title={"Profile"}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/mysposts' component={News}/>
-
-                    <Route path='/dialogs' render={SomeComponent}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogs={dialogsData} messages={messagesData}/>}/>
                 </div>
             </div>
 
