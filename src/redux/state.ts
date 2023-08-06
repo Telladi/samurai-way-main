@@ -1,45 +1,46 @@
+import {RerenderEntireTree} from "../Rerender";
 
-type PostType = {
+
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: PostType[]
 }
 
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
 }
 
-type SidebarType = {}
+export type SidebarType = {}
 
-type RootStateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: {}
 }
 
 
-let state: RootStateType = {
+export const state: StateType = {
     profilePage: {
         posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 11},
                 {id: 2, message: 'Hi, Good', likesCount: 22},
-                {id: 3, message: 'how are you?', likesCount: 24},
-                {id: 4, message: 'Hi,  you?', likesCount: 43},
+
         ]
     },
     dialogsPage: {
@@ -62,4 +63,13 @@ let state: RootStateType = {
     sidebar: {}
 }
 
-export default state;
+export const addPost = (message: string) => {
+
+    let newPost = {id: 3, message, likesCount: 2}
+    state.profilePage.posts.unshift(newPost);
+    console.log(state.profilePage.posts)
+    RerenderEntireTree(state)
+
+}
+
+

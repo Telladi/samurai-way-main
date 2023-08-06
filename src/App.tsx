@@ -1,20 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
-//import Technologies from "./components/Technologies/Technologies";
-//import Footer from "./components/Footer/Footer";
-import logo from "./img/logo-header.png"
-import Profile from "./components/Profile/Profile";
-//import logo-main from "./img/img-main.jpg"
-import classes from "./App.module.css";
-
+import {Header} from "./components/Header/Header";
+import {Navbar} from "./components/Navbar/Navbar";
+import {Profile} from "./components/Profile/Profile";
+import s from "./App.module.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
-import News from "./components/News/News";
-import state from './redux/state';
-
-
+import {StateType, state, addPost} from './redux/state';
+import {Route} from "react-router-dom";
+import {Footer} from "./components/Footer/Footer";
+import logo from "./img/logo-header.png"
 
 
 export type HeaderLogoType = {
@@ -23,35 +17,31 @@ export type HeaderLogoType = {
 export const headerlogo: HeaderLogoType = {
     logo: logo
 }
+export type AppPropsType = {
+    state: StateType
+    addPost: (message: string)=>void
+}
 
+const App = (props: AppPropsType) => {
 
-const App = () => {
-
-let messagesData = state.dialogsPage.messages
-let dialogsData = state.dialogsPage.dialogs
-let postsData = state.profilePage.posts
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header logo={headerlogo}/>
-                <div>
-                    <nav className={classes.nav}>
-                        <Navbar title={"Profile"}/>
-
-
-                    </nav>
-                </div>
-                <div className={classes.content}>
-                    {/*<Route path='/dialogs' component={SomeComponent}/>*/}
-                    <Route path='/profile' render={()=> <Profile posts={postsData} title={"Profile"}/>}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/mysposts' component={News}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={dialogsData} messages={messagesData}/>}/>
-                </div>
+        <div className='app-wrapper'>
+            <Header logo={headerlogo}/>
+            <div>
+                <nav className={s.nav}>
+                    <Navbar title={"Profile"}/>
+                </nav>
             </div>
+            <div className={s.content}>
+                <Route path='/profile' render={() => <Profile posts={props.state.profilePage} addPost={props.addPost}/>}/>
+                <Route path='/dialogs' render={() => <Dialogs
+                    dialogs={state.dialogsPage.dialogs}
+                    messages={state.dialogsPage.messages}/>}/>
+            </div>
+            <Footer/>
+        </div>
 
-        </BrowserRouter>
     )
 }
-export default App;
 
+export default App;

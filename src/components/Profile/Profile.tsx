@@ -1,27 +1,27 @@
-import React, {useState} from "react";
-import app from "../../App";
-import classes from "./Profile.module.css";
-import MyPosts from "./MyPosts/MyPosts";
-import News from "../News/News";
-import ProfileInfo from "./PropfileInfo/ProfileInfo";
-import {PostsPropsType} from "../../index";
+import React from "react";
+import s from './Profile.module.css'
 
-export type ProfilePropsType = {
-    title: string
-    posts: PostsPropsType[]
+import ProfileInfo from "./PropfileInfo/ProfileInfo";
+import {MyPosts} from "./MyPosts/MyPosts";
+import {PostType, ProfilePageType} from "../../redux/state";
+
+type ProfilePropsType = {
+    posts: ProfilePageType
+    addPost: (message: string)=>void
 }
 
-
-const Profile = (props: ProfilePropsType) => {
+export const Profile = (props: ProfilePropsType) => {
 
 
     return (
-        <div>
+        <div className={s.content}>
+
+            <div>
+                ava + desc
+            </div>
             <ProfileInfo ava={"ava"}/>
-            <MyPosts title={"MyPosts"} posts={props.posts}/>
+            <MyPosts  posts={props.posts.posts} addPost={props.addPost}/>
 
         </div>
     )
 }
-
-export default Profile;

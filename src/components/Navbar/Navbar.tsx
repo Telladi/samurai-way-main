@@ -1,6 +1,5 @@
 import React from "react";
-import classes from "./Navbar.module.css";
-import News from "../News/News";
+import s from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
 
@@ -8,9 +7,9 @@ export type NavbarPropsType = {
     title: string
 }
 
-const Navbar = (props: NavbarPropsType) => {
+export const Navbar = (props: NavbarPropsType) => {
     return (
-        <div className={classes.item}>
+        <div className={s.navbar}>
             <div><NavLink to="/profile">Profile</NavLink></div>
             <div><NavLink to="/dialogs">Dialogs</NavLink></div>
             <div><NavLink to="/music">Music</NavLink></div>
@@ -19,4 +18,4 @@ const Navbar = (props: NavbarPropsType) => {
     )
 }
 
-export default Navbar;
+

@@ -1,15 +1,13 @@
 import classes from "./../Dialogs.module.css";
-import React from "react";
-import state from "../../../redux/state";
+import React, {FC} from "react";
+import {MessageType} from "../../../redux/state";
 
 
 
 
 
-
-
-export const Message = () => {
+export const Message: React.FC <MessageType> = ({message, id}) => {
     return (
-        <div className={classes.message}>{state.dialogsPage.messages}</div>
+        <div className={classes.message}>{message}</div>
     )
 }
