@@ -2,6 +2,7 @@ import React, {ChangeEvent, useRef, useState} from "react";
 import s from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {PostType} from "../../../redux/state";
+import {AddInputForm} from "../../Dialogs/Dialogs";
 
 
 export type MyPostsPropsType = {
@@ -19,26 +20,15 @@ export const MyPosts = (props: MyPostsPropsType) => {
         />
     )
 
-    const newPostElement = useRef<HTMLTextAreaElement>(null)
-
-const [text, setText]=useState<string>('')
-
-
-
-    const onClickHandler = () => {
-        if(newPostElement.current)
-    props.addPost(newPostElement.current.value)
+    const onClickHandler = (text: string) => {
+        props.addPost(text)
     }
 
     return (
         <div className={s.myposts}>
             <h3>My posts</h3>
             <div>
-                <div>
-                    {/*<textarea onChange={onChangeHandler} value={text}></textarea> */}
-                    <textarea ref={newPostElement}></textarea>
-                </div>
-                <button onClick={onClickHandler}>Add post</button>
+                <AddInputForm title={"add post"} onClickCallback={onClickHandler}/>
                 <div>
                     {postsElements}
                 </div>
