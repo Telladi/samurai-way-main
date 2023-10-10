@@ -1,8 +1,17 @@
-.item {
-    color: greenyellow;
+.avatarImage {
+    width: 52px;
+    height: 40px;
+    border-radius: 50px;
 }
-.item img {
-    width: 50px;
-    border-radius: 50%;
-    background-color: red;
+
+.postWrap {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.likeWrap {
+    width: 100px;
+    display: flex;
+    justify-content: end;
 }

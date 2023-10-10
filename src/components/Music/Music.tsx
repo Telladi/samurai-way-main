@@ -2,10 +2,10 @@ import React from 'react';
 import s from '/Dialogs.module.css'
 
 
-export const News = () => {
+export const Music = () => {
     return (
         <div>
-            News
+           Music
         </div>
     );
 };

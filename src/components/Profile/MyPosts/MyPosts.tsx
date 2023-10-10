@@ -1,41 +1,45 @@
-import React, {ChangeEvent, useRef, useState} from "react";
-import s from "./MyPosts.module.css";
-import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/state";
-import {AddInputForm} from "../../Dialogs/Dialogs";
+import React, {ChangeEvent, useRef} from 'react';
+import s from './MyPosts.module.css'
+import {PostType, UnionType} from "../../../redux/state";
+import {addPostAC, updatePostAC} from "../../../redux/profileReducer";
+import {Post} from './Post/Post';
+
 
 
 export type MyPostsPropsType = {
     posts: PostType[]
-    addPost: (message: string)=>void
+    newPostText: string
+    dispatch: (action: UnionType)=> void
+
 }
+
+
+
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
 
-    const postsElements = props.posts.map(post => <Post
-            id={post.id}
-            message={post.message}
-            likesCount={post.likesCount}
-        />
-    )
+    const postsElements = props.posts.map(post => <Post id={post.id} message={post.message} likeCount={post.likeCount}/>)
 
-    const onClickHandler = (text: string) => {
-        props.addPost(text)
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    const addPostHandler = () => {
+        if (newPostElement.current) props.dispatch(addPostAC())
+    }
+
+    const onChangePostText = () => {
+
+        if (newPostElement.current) props.dispatch(updatePostAC(newPostElement.current.value))
     }
 
     return (
-        <div className={s.myposts}>
+        <div className={s.content}>
             <h3>My posts</h3>
-            <div>
-                <AddInputForm title={"add post"} onClickCallback={onClickHandler}/>
-                <div>
-                    {postsElements}
-                </div>
-
+            <div className={s.newPostWrap}>
+                <textarea value={props.newPostText} onChange={onChangePostText} ref={newPostElement}/>
+                <button onClick={addPostHandler}>Add post</button>
             </div>
+                {postsElements}
         </div>
-
     )
 }
-
