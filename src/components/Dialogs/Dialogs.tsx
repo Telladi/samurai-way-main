@@ -3,17 +3,18 @@ import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./Dialog/DialogItem";
 import {StoreType, UnionType} from "../../redux/state";
-import {MessageSender} from "./Message/MessageSender/MessageSender";
+import {MessageSenderContainer} from "./Message/MessageSender/MessageSenderContainer";
+import {AppRootStateType} from "../../redux/store";
 
 export type DialogsPropsType = {
-    store: StoreType
+    store: AppRootStateType
     dispatch: (action: UnionType) => void
 }
 
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    const state = props.store.getState().dialogsPage
+    const state = props.store.dialogsPage
 
     const dialogsElements = state.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
     const messagesElements = state.messages.map(message => <Message id={message.id}
@@ -34,7 +35,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                     {messagesElements}
                 </ul>
 
-                <MessageSender state={state} dispatch={props.dispatch}/>
+                <MessageSenderContainer state={props.store} dispatch={props.dispatch} />
 
             </div>
         </div>

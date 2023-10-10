@@ -9,10 +9,11 @@ import {Navbar} from "./components/NavBar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Settings} from "./components/Settings/Settings";
 import {Header} from "./components/Header/Header";
+import {AppRootStateType} from "./redux/store";
 
 
 type AppPropsType = {
-    store: any
+    store: AppRootStateType
     state: StateType
     dispatch: (action: UnionType)=> void
 }

@@ -19,4 +19,8 @@ const rerenderEntireThree = (state: StateType) => {
 
 rerenderEntireThree(store.getState())
 
-store.subscribe(rerenderEntireThree)
+store.subscribe( () => {
+    const state = store.getState()
+    rerenderEntireThree(state)
+})
+

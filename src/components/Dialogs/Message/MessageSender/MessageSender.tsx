@@ -4,26 +4,31 @@ import {DialogsPageType, StoreType, UnionType} from "../../../../redux/state";
 import s from './MessageSender.module.css'
 
 export type MessageSenderPropsType = {
-    state: DialogsPageType
-    dispatch: (action: UnionType) => void
+    newMessageText: string
+    getNewMessage: ()=> void
+    updateNewMessageText: (text: string) => void
 }
 
 
 export const MessageSender = (props: MessageSenderPropsType) => {
 
-    const newMessageText = props.state.newMessageText
 
-    const newMessageHandler = () => props.dispatch(newMessageAC())
 
-    const updateNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateMessageAC(e.currentTarget.value))
+    const newMessageHandler = () => {
+      props.getNewMessage()
     }
+
+    const updateNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => (
+        props.updateNewMessageText(e.currentTarget.value)
+    )
+
+
 
 
     return (
         <div className={s.sendForm}>
            <textarea  className={s.textarea} placeholder={'Type your new message'}
-                value={newMessageText}
+                value={props.newMessageText}
                 onChange={updateNewMessageHandler}/>
            <button className={s.button} onClick={newMessageHandler}>Send</button>
         </div>
